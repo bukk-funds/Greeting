@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>greetings</title>
+    <style type="text/css" media="all">
+      *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: aliceblue;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+button{
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: teal;
+  color: #fff;
+  width: 200px;
+  font-family: Verdana;
+  font-size: 20px;
+}
+
+p{
+  font-family: Sans-Serif;
+  font-size: 18px;
+}
+    </style>
+  </head>
+  <body>
+    
+    <button type="submit">Click Me</button>
+    <p id="greeting"></p>
+    
+    <script>
+      
+      
+const button = document.querySelector('button');
+
+function greet(){
+  const name = prompt("what is your name?").capitalize();
+  const greeting = document.querySelector('#greeting');
+  greeting.textContent = `Hello ${name}, nice to see you🤗`;
+}
+
+button.addEventListener("click", greet);
+    </script>
+  </body>
+</html>
