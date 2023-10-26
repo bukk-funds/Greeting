@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>greetings</title>
     <style type="text/css" media="all">
       *{
@@ -11,48 +12,101 @@
 }
 
 body {
-  background-color: aliceblue;
+  background:#f0f2f5;
   display:flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  font-family:system-ui;
+  font-size:20px;
+}
+
+.fw-600{
+  font-weight:600;
+}
+
+form{
+  max-width:300px;
 }
 
 button{
-  padding: 10px;
+  padding:1rem;
   margin-bottom: 10px;
   border: none;
   background-color: teal;
   color: #fff;
-  width: 200px;
-  font-family: Verdana;
-  font-size: 20px;
+  width:100%;
+  cursor:pointer;
+  text-transform:capitalize;
+  font:inherit;
 }
 
-p{
-  font-family: Sans-Serif;
-  font-size: 18px;
+button:hover{
+  background-color:darkslategray;
 }
+
+input{
+  display:block;
+  margin:1.5rem 0; /*top and bottom, left and right*/
+  padding:1rem;
+  border:2px solid lightslategray;
+  font:inherit;
+  width:100%;
+}
+input:focus{
+  outline:none;
+  border:2px solid teal;
+}
+
+
+
     </style>
   </head>
   <body>
+
+<p id="greetings" style="margin-bottom:1.5rem;"></p>
     
-    <button type="submit">Click Me</button>
-    <p id="greeting"></p>
+
+    <form action="" id="nameForm">
+
+      <h2 class="fw-600">Submit Your Name</h2>
+
+      <input type="text" name="username" id="username" placeholder="Enter your name here..." required>
+    
+    <button type="submit">submit name</button>
+    </form>
     
     <script>
-      
-      
-const button = document.querySelector('button');
+      // get the form by id
+    const nameForm = document.getElementById('nameForm');
 
-function greet(){
-  const name = prompt("what is your name?").capitalize();
-  const greeting = document.querySelector('#greeting');
-  greeting.textContent = `Hello ${name}, nice to see you🤗`;
-}
+    nameForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // prevent the page from reloading after submit
 
-button.addEventListener("click", greet);
+        const userName = document.getElementById('username');
+        const myDate = new Date();
+        const hrs = myDate.getHours();
+
+        let greet;
+        
+        if (hrs < 12) {
+          greet = 'good morning ';
+        }
+        else if (hrs >= 12 && hrs <= 17){
+          greet = 'good afternoon ';
+        }
+
+        else if (hrs >= 17 && hrs <= 24){
+          greet = 'good evening ' ;
+        }
+         
+         // display the user name on the page
+        document.getElementById('greetings').innerHTML = `${greet} ${userName.value} 👋🏽 `;
+
+        //clear the form after submitting
+        document.getElementById('nameForm').reset(); 
+    });
     </script>
   </body>
 </html>
